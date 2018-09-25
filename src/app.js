@@ -1,18 +1,66 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Pet } from './pet';
+import  Pet  from './pet';
+import pf from 'petfinder-client';
+
+const petfinder = pf({
+  key: process.env.API_KEY,
+  secret: process.env.API_SECRET
+});
 
 class App extends React.Component {
+  constructor(props){
+    super(props);
+     this.state = {
+       pets: []
+     };
+  }
+  componentDidMount() {
+    petfinder.pet.find({ output: 'full', location: 'Seattle, WA'})
+    .then(data => {
+      let pets;
+      if (data.petfinder.pets && data.petfinder.pets.pet) {
+        if(Array.isArray(data.petfinder.pets.pet)) {
+          pets = data.petfinder.pets.pet;
+        } else {
+          pets = [data.petfinder.pets.pet]
+        }
+      } else {
+        pets = []
+      }
+      this.setState({
+        pets 
+      })
+    })     
+     } 
+  
+  //componentDidMount its a life cycle methodhelps you render something on you web while you are trying to make a fetch on api call
+   // state is changeable
   render() {
     return (
       <div>
         <h1>Adopt Me</h1>
-        <Pet name="luna" animal="dog" breed="asian" />
-        <Pet name="escort" animal="cat" breed="cocasian" />
-        <Pet name="billy" animal="horse" breed="mosco" />
+        <div>
+        { this.state.pets.map(pet => {
+          let breed;
+          if (Array.isArray(pet.breeds.breed)) {
+            breed = pet.breeds.breed.join(', ')
+          } else {
+            breed = pet.breeds.breed 
+          }
+         return <Pet 
+            key = {pet.id}
+           animal = { pet.animal}
+          name = { pet.name }
+        breed = { breed }
+        media = {pet.media}
+        location = {`${pet.contact.city}, ${pet.contact.state}`} />
+        })}
+        </div>
       </div>
     )
   }
 }
+
 
 render(<App />, document.getElementById("root"));
