@@ -1,40 +1,18 @@
-const pet = props => {
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, props.name),
-    React.createElement("h2", {}, props.animal),
-    React.createElement("h3", {}, props.breed)
-  ]);
-};
+import React from 'react';
+import { render } from 'react-dom';
+import { Pet } from './pet';
 
 class App extends React.Component {
-  handleTitleClick() {
-    alert("YEE!! yOU clicked me");
-  }
   render() {
-    return React.createElement("div", {}, [
-      // the empty braces is where the attributes like
-      React.createElement(
-        "h1",
-        { onClick: this.handleTitleClick },
-        "adopt A cat"
-      ),
-      React.createElement(pet, {
-        name: "luna",
-        animal: "dog",
-        breed: "asian castle"
-      }),
-      React.createElement(pet, {
-        name: "escort",
-        animal: "dog",
-        breed: "asian castle"
-      }),
-      React.createElement(pet, {
-        name: "billy",
-        animal: "dog",
-        breed: "asian castle"
-      })
-    ]);
+    return (
+      <div>
+        <h1>Adopt Me</h1>
+        <Pet name="luna" animal="dog" breed="asian" />
+        <Pet name="escort" animal="cat" breed="cocasian" />
+        <Pet name="billy" animal="horse" breed="mosco" />
+      </div>
+    )
   }
 }
 
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
+render(<App />, document.getElementById("root"));
