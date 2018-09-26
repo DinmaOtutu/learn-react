@@ -6,6 +6,7 @@ jspm_packages/
 # vscode configuration
 .vscode/
 .cache/
+dist/
 
 #SECRET
 .env
