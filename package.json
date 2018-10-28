@@ -1,0 +1,32 @@
+{
+  "name": "learn-react",
+  "version": "1.0.0",
+  "description": "a simple react-app",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write \"src/**/*.{js, css, json} \"",
+    "format:check": "prettier --list-different \"src/**/*.{js, css, jsx,json} \"",
+    "lint": "eslint \"**/*.{js, jsx}\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DinmaOtutu/learn-react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DinmaOtutu/learn-react/issues"
+  },
+  "homepage": "https://github.com/DinmaOtutu/learn-react#readme",
+  "devDependencies": {
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "prettier": "^1.14.3",
+    "eslint": "^5.6.0"
+  },
+  "dependencies": {
+    
+  }
+}
